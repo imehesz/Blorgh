@@ -1,0 +1,45 @@
+.infinite_navigation
+{
+    display: none;
+}
+
+.blorgh
+{
+    float:left;
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid #eee;
+}
+
+    .title
+    {
+        font-size: 13px;
+        font-weight: bolder;
+    }
+
+    .teaser
+    {
+        font-size: 12px;
+    }
+
+
+    .body
+    {
+        font-size: 12px;
+    }
+
+    .category
+    {
+        font-size: 10px;
+        font-style: italic;
+    }
+
+.small
+{
+    width: 125px;
+}
+
+.big
+{
+    width: 250px;
+}

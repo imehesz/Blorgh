@@ -6,3 +6,4 @@ production.php
 *.swp
 *.swo
 *.gz
+*.*~
