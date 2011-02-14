@@ -1,5 +1,8 @@
 assets
 runtime
-config/main.php
-config/development.php
-config/production.php
+development.php
+production.php
+*.zip
+*.swp
+*.swo
+*.gz
