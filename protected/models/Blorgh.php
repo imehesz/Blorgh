@@ -23,6 +23,8 @@ class Blorgh extends CActiveRecord
 
     public $publish_time;
 
+    public $image;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Blorgh the static model class
@@ -45,10 +47,12 @@ class Blorgh extends CActiveRecord
 	 */
 	public function rules()
 	{
+        echo Yii::app()->params['blorgh_types']['mini']['width'];
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
             array( 'title,type', 'required' ),
+            array( 'image', 'file', 'types' => 'jpg,gif,png', 'allowEmpty' => true ),
 			array('updated, created, publish_date', 'numerical', 'integerOnly'=>true),
 			array('category, status, type', 'length', 'max'=>50),
 			array('photo, title, publish_time', 'length', 'max'=>100),
@@ -118,8 +122,9 @@ class Blorgh extends CActiveRecord
 
     public function beforeValidate()
     {
+        parent::beforeValidate();
         $this->publish_date = strtotime( $this->publish_date . ' ' . $this->publish_time );
-        return parent::beforeValidate();
+        return true;
     }
 
     public function beforeSave()
@@ -143,25 +148,18 @@ class Blorgh extends CActiveRecord
      */
     public function getBlorghTypes()
     {
-        if( isset( Yii::app()->params['blorgh_types'] ) )
-        {
-            $types = Yii::app()->params['blorgh_types'];
+        $types = Yii::app()->params['blorgh_types'];
 
-            if( is_array( $types ) )
+        if( is_array( $types ) )
+        {
+            $keys = array_keys( $types );
+
+            for( $i=0; $i<sizeof($keys); $i++ )
             {
-                $keys = array_keys( $types );
-
-                for( $i=0; $i<sizeof($keys); $i++ )
-                {
-                    $retval[$keys[$i]] = $keys[$i];
-                }
-
-                return $retval;
+                $retval[$keys[$i]] = $keys[$i];
             }
-        }
-        else
-        {
-            throw new CHttpException( 500, 'Missing Blorgh Types, please read the documentation' );
+
+            return $retval;
         }
     }
 }

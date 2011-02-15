@@ -69,8 +69,23 @@ class BlorghController extends Controller
 		if(isset($_POST['Blorgh']))
 		{
 			$model->attributes=$_POST['Blorgh'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+            if( $model->validate() )
+            {
+                $model->image = CUploadedFile::getInstance( $model, 'image' );
+
+                if( $model->image )
+                {
+                    $file_name = MUtility::strToPretty( $model->image->name ) . time() . '.' . $model->image->extensionName;
+                    $file = dirname( Yii::app()->request->scriptFile ) . 'images/uploads/' . $file_name;
+                    $model->image->saveAs( $file );
+                    $model->photo = $file_name;
+                }
+
+                if($model->save( false ))
+                {
+                    $this->redirect(array('view','id'=>$model->id));
+                }
+            }
 		}
 
 		$this->render('create',array(

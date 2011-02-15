@@ -5,8 +5,16 @@
     class Mutility
     {
         
-        function __construct(argument)
+        /**
+         * returns a well formatted string that can be useful for
+         * URL-s username etc ...
+         *
+         * @param $str string
+         * @return string
+         */
+        public static function strToPretty( $str )
         {
-            // code...
+            $retval = strtolower( $str );
+            return trim(preg_replace(array('/[^a-z0-9-]/', '/-+/'), array('-','-'), $retval), '-');
         }
     }

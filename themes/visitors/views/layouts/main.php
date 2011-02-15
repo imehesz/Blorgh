@@ -29,30 +29,12 @@
 
 	<div id="mainmenu">
         visitors visitors visitors visitors visitors visitors visitors visitors visitors visitors visitors visitors visitors visitors visitors visitors visitors visitors visitors visitors 
-		<?php /*
-            $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-			),
-		)); 
-            */
-            ?>
 	</div><!-- mainmenu -->
-
-	<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-		'links'=>$this->breadcrumbs,
-	)); ?><!-- breadcrumbs -->
 
 	<?php echo $content; ?>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by Blorgh.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+		via <?php echo CHtml::link( 'Blorgh', 'https://github.com/imehesz/Blorgh', array( 'target' => '_blank' ) ); ?>
 	</div><!-- footer -->
 
 </div><!-- page -->
